@@ -2,7 +2,7 @@
 
   "use strict";
 
-  var audio     = new Audio("../audio/bgm.mp3"),
+  var audio     = new Audio("./audio/bgm.mp3"),
       wrapper   = doc.getElementById("wrapper"),
       btn       = doc.getElementById("btn");
 
