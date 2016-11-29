@@ -18,7 +18,7 @@ void setup() {
 }
 
 void loop() {
-  theaterChase(strip.Color(250, 250, 250), 50)
+  theaterChase(strip.Color(255, 235, 200), 80);
 }
 
 void theaterChase(uint32_t c, uint8_t wait) {
