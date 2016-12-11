@@ -1,0 +1,46 @@
+#btnToggle {
+  $size: 90px;
+  $delay: .2;
+
+  border: none;
+  border-radius: $size / 2;
+  width: $size * 1.75; height: $size;
+  box-shadow: 0 0 2px rgba(0, 0, 0, .4) inset;
+  background: #f8f8f2;
+  cursor: pointer;
+  outline: none;
+  transition: background #{$delay}s ease-in-out, opacity #{$delay}s #{$delay}s ease-in-out;
+  -webkit-appearance: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  
+  &:after {
+    display: block;
+    position: absolute;
+    top: 0; bottom: 0;
+    left: 0;
+    margin: auto;
+    border-radius: 50%;
+    width: $size; height: $size;
+    content: "";
+    background: #fff;
+    box-shadow: 0 0 4px rgba(0, 0, 0, .4);
+    transition: left #{$delay}s ease-in-out;
+    pointer-events: none;
+  }
+  
+  &:checked {
+    background: #CDDC39;
+    
+    &:after {
+      left: $size * 0.75;
+    }
+  }
+}
+
+.center {
+  position: absolute;
+  top: 0; bottom: 0;
+  left: 0; right: 0;
+  margin: auto;
+}

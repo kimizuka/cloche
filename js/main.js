@@ -1,16 +1,71 @@
-((win, doc, $) => {
+((win, doc) => {
+
+  // touchmoveを無効にする
+  // ダブルタップを無効にする
+
+  "use strict";
+
+  var INTERVAL = 200,
+      tapFlag  = false,
+      timer;
+
+  doc.body.addEventListener("touchmove", (evt) => {
+    evt.preventDefault();
+  }, true);
+
+  doc.body.addEventListener("touchstart", (evt) => {
+    if (tapFlag) {
+      evt.preventDefault();
+    }
+  }, true);
+
+  doc.body.addEventListener("touchend", (evt) => {
+    tapFlag = true;
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      tapFlag = false;
+    }, INTERVAL);
+  }, true);
+    
+})(window, document);
+
+((win, doc) => {
+
+  "use strict";
+
+  var btnReload  = doc.getElementById("btnReload"),
+      btnClear   = doc.getElementById("btnClear");
+
+  btnReload.addEventListener("click", () => {
+    location.search = "date=" + Date.now();
+  }, false);
+
+  btnClear.addEventListener("click", () => {
+    try {
+      localStorage.clear();
+    } catch(e) {
+
+    }
+  }, false);
+
+})(window, document);
+
+((win, doc) => {
+
+  // 傾きに応じて音楽を再生する
 
   "use strict";
 
   var audio     = new Audio("./audio/bgm.mp3"),
       wrapper   = doc.getElementById("wrapper"),
-      btn       = doc.getElementById("btn");
+      btnToggle = doc.getElementById("btnToggle");
 
   win.addEventListener("devicemotion", (evt) => {
-    var z = Math.abs(evt.accelerationIncludingGravity.z);
+    var LIMIT = 8,
+        z     = Math.abs(evt.accelerationIncludingGravity.z);
 
-    if (z < 9.8) {
-      if (btn.checked) {
+    if (z < LIMIT) {
+      if (btnToggle.checked) {
         audio.play();
       }
     } else {
@@ -19,11 +74,7 @@
     }
   }, false);
 
-  doc.body.addEventListener("touchmove", (evt) => {
-    evt.preventDefault();
-  }, true);
-
-  btn.addEventListener("change", () => {
+  btnToggle.addEventListener("change", () => {
     if (!btn.checked) {
       audio.pause();
       audio.currentTime = 0;
@@ -39,4 +90,4 @@
     wrapper.removeEventListener("click", handleClick, false);
   }
 
-})(window, document, jQuery);
+})(window, document);

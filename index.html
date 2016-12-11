@@ -13,13 +13,15 @@
   <link rel="canonical" href="https://kimizuka.github.io/croche" />
   <link rel="stylesheet" href="./css/main.css" />
 </head>
-<body>
+<body data-menu="false">
   <div id="wrapper">
-    <input id="btn" type="checkbox" class="btn center" />
+    <input id="btnMenu" type="checkbox" />
+    <ul id="menu">
+      <li id="btnReload" class="btn">RELOAD</li>
+      <li id="btnClear" class="btn">DATA CLEAR</li>
+    </ul>
+    <input id="btnToggle" type="checkbox" class="btn center" />
   </div>
-  <script src="./js/jquery-3.1.1.min.js"></script>
-  <script src="./js/jquery.easing.min.js"></script>
-  <script src="./js/socket.io-1.4.5.min.js"></script>
   <script src="./js/main.js"></script>
 </body>
 </html>
